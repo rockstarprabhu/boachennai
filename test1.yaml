@@ -1,0 +1,15 @@
+--- # handlers
+ - hosts: local
+   remote_user: ansible
+   become: yes
+   tasks:
+   - name: confirm user
+     user:
+       name: ganesh
+       state: absent
+     notify: test_one
+   handlers:
+   - name: test_one
+     service:
+       name: httpd
+       state: stopped
